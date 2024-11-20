@@ -5,6 +5,7 @@ export const ContactMemberProvider = ({ children }) => {
   const [contactMembers, setContactMembers] = useState([
     {
       id: 1,
+	  image:"https://api.dicebear.com/9.x/pixel-art/svg",
       name: "Ali",
       surname: "Yılmaz",
       phoneNumber: "0555-123-4567",
@@ -17,6 +18,7 @@ export const ContactMemberProvider = ({ children }) => {
     },
     {
       id: 2,
+	  image:"https://api.dicebear.com/9.x/pixel-art/svg",
       name: "Ayşe",
       surname: "Kara",
       phoneNumber: "0554-234-5678",
@@ -29,6 +31,7 @@ export const ContactMemberProvider = ({ children }) => {
     },
     {
 		id: 3,
+		image:"https://api.dicebear.com/9.x/pixel-art/svg",
 		name: "Mehmet",
 		surname: "Demir",
 		phoneNumber: "0553-345-6789",
@@ -41,6 +44,7 @@ export const ContactMemberProvider = ({ children }) => {
 	  },
 	  {
 		id: 4,
+		image:"https://api.dicebear.com/9.x/pixel-art/svg",
 		name: "Zeynep",
 		surname: "Çelik",
 		phoneNumber: "0552-456-7890",
@@ -53,6 +57,7 @@ export const ContactMemberProvider = ({ children }) => {
 	  },
 	  {
 		id: 5,
+		image:"https://api.dicebear.com/9.x/pixel-art/svg",
 		name: "Kemal",
 		surname: "Öztürk",
 		phoneNumber: "0551-567-8901",
@@ -65,6 +70,7 @@ export const ContactMemberProvider = ({ children }) => {
 	  },
 	  {
 		id: 6,
+		image:"https://api.dicebear.com/9.x/pixel-art/svg",
 		name: "Fatma",
 		surname: "Balcı",
 		phoneNumber: "0550-678-9012",
@@ -77,6 +83,7 @@ export const ContactMemberProvider = ({ children }) => {
 	  },
 	  {
 		id: 7,
+		image:"https://api.dicebear.com/9.x/pixel-art/svg",
 		name: "Hakan",
 		surname: "Kuş",
 		phoneNumber: "0549-789-0123",
@@ -89,6 +96,7 @@ export const ContactMemberProvider = ({ children }) => {
 	  },
 	  {
 		id: 8,
+		image:"https://api.dicebear.com/9.x/pixel-art/svg",
 		name: "Elif",
 		surname: "Süleymanoğlu",
 		phoneNumber: "0548-890-1234",
@@ -101,6 +109,7 @@ export const ContactMemberProvider = ({ children }) => {
 	  },
 	  {
 		id: 9,
+		image:"https://api.dicebear.com/9.x/pixel-art/svg",
 		name: "Ozan",
 		surname: "Arslan",
 		phoneNumber: "0547-901-2345",
@@ -113,6 +122,7 @@ export const ContactMemberProvider = ({ children }) => {
 	  },
 	  {
 		id: 10,
+		image:"https://api.dicebear.com/9.x/pixel-art/svg",
 		name: "Nazan",
 		surname: "Gül",
 		phoneNumber: "0546-012-3456",

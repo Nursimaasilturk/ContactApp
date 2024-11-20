@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useContactMembers } from '../Context/ContactMember';
 import memberImage from '../assets/list-member-img.png';
 import PhoneIcon from './Icons/PhoneIcon';
@@ -7,12 +7,16 @@ import EmailIcon from './Icons/EmailIcon';
 import LocationIcon from './Icons/LocationIcon';
 function ContactList() {	
   const { contactMembers }= useContactMembers();
+
+  useEffect(()=>{
+	document.title = "Contact App | Sima";
+  },[])
   return (
 	<div className='h-[83%] rounded-[13px] overflow-hidden'>	
 		<div className='w-full h-[89%]  flex flex-col gap-4 overflow-y-scroll scrollbar-hide'>
 			{contactMembers.map((contact =>(
 				<div key={contact.id} className="contact-item w-full rounded-[13px] bg-secondary px-4 py-3 flex items-center justify-between">
-					<img src={memberImage} alt="" width={60} height={60} className='rounded-full'/>
+					<img src={contact.image} alt="" width={60} height={60} className='rounded-full'/>
 					<div className="flex flex-col justify-start ml-3 w-4/12">
 						<p className='text-white font-semibold'>{contact.name}</p>
 						<p className='text-white font-semibold'>{contact.surname}</p>

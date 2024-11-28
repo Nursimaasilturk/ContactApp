@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { useContactMembers } from '../Context/ContactMember';
-import memberImage from '../assets/list-member-img.png';
 import PhoneIcon from './Icons/PhoneIcon';
 import CompanyIcon from './Icons/CompanyIcon';
 import EmailIcon from './Icons/EmailIcon';
@@ -23,7 +22,7 @@ function ContactList() {
 					</div>
 					<div className='w-6/12 flex flex-wrap gap-2'>
 						<div className="w-5/12 flex items-center">
-							<PhoneIcon className="mr-3 fill-primary"/>
+							<PhoneIcon className="mr-3 fill-primary"/>		
 							<p className='text-[#ededed] font-light text-[11px]'>{contact.phoneNumber}</p>
 						</div>
 						<div className="w-5/12 flex items-center">

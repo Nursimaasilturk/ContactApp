@@ -48,6 +48,7 @@ app.get('/user/:id', async (req,res)=>{
 		res.status(500).json({error:'API isteği sırasında hata oluştu!'})
 	}
 });
+
 app.get('/search/:query?',async(req,res,next)=>{
 	let query = req.params.query;
 	if (!query) {

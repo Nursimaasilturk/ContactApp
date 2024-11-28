@@ -1,0 +1,17 @@
+[
+    { "id":1,"name": "Ali", "surname": "Yılmaz", "age": 22, "faculty": "Mühendislik", "department": "Bilgisayar Mühendisliği" },
+    { "id":2,"name": "Ayşe", "surname": "Kara", "age": 21, "faculty": "Fen-Edebiyat", "department": "Matematik" },
+    { "id":3,"name": "Mehmet", "surname": "Demir", "age": 23, "faculty": "Mühendislik", "department": "Elektrik-Elektronik Mühendisliği" },
+    { "id":4,"name": "Zeynep", "surname": "Çelik", "age": 20, "faculty": "Tıp", "department": "Tıp Fakültesi" },
+    { "id":5,"name": "Fatma", "surname": "Şahin", "age": 24, "faculty": "Hukuk", "department": "Hukuk Fakültesi" },
+    { "id":6,"name": "Emre", "surname": "Ak", "age": 22, "faculty": "İktisadi ve İdari Bilimler", "department": "İşletme" },
+    { "id":7,"name": "Can", "surname": "Öztürk", "age": 21, "faculty": "Eğitim", "department": "Rehberlik ve Psikolojik Danışmanlık" },
+    { "id":8,"name": "Selin", "surname": "Kaya", "age": 23, "faculty": "Sanat ve Tasarım", "department": "Grafik Tasarımı" },
+    { "id":9,"name": "Mert", "surname": "Bulut", "age": 22, "faculty": "Mühendislik", "department": "Makine Mühendisliği" },
+    { "id":10,"name": "Elif", "surname": "Aydın", "age": 21, "faculty": "Fen-Edebiyat", "department": "Fizik" },
+    { "id":11,"name": "Burak", "surname": "Koç", "age": 24, "faculty": "Mühendislik", "department": "Endüstri Mühendisliği" },
+    { "id":12,"name": "Hale", "surname": "Er", "age": 20, "faculty": "Fen-Edebiyat", "department": "Kimya" },
+    { "id":13,"name": "Deniz", "surname": "Arslan", "age": 23, "faculty": "İletişim", "department": "Gazetecilik" },
+    { "id":14,"name": "Ece", "surname": "Baş", "age": 22, "faculty": "Eczacılık", "department": "Eczacılık Fakültesi" },
+    { "id":15,"name": "Ozan", "surname": "Yıldırım", "age": 25, "faculty": "Mühendislik", "department": "İnşaat Mühendisliği" }
+]

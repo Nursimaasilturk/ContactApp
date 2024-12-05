@@ -2,10 +2,10 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "sevice.js",
+  "main": "api.js",
   "scripts": {
-    "start": "node service.js",
-    "dev": "nodemon service.js"
+    "start": "node api.js",
+    "dev": "nodemon api.js"
   },
   "keywords": [],
   "author": "",

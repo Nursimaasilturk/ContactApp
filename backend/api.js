@@ -79,7 +79,7 @@ app.get('/contact/:id',(req,res)=>{
 	result ? res.status(200).send(result) : res.status(404).send('Bu idye sahip bir kullanıcı bulunmamaktadır.');
 });
 // DELETE ALL Contact and Location Data
-app.delete('/deleteAll',(res,req)=>{
+app.delete('/deleteAll',(req,res)=>{
 	try{
 		const deleteAllContact = db.prepare(`
 			DELETE FROM Contact
@@ -97,6 +97,32 @@ app.delete('/deleteAll',(res,req)=>{
 	}
 });
 // UPDATE işlemi
+app.put('/update/:id',(req,res)=>{
+	try{
+		const {id} = req.params;
+		const {name,surname,email,phone_number,company,country,city} = req.body;
+		const updatingContact = db.prepare(`
+			UPDATE Contact 
+			SET name = ?, surname = ?, email = ?,phone_number=?, company =?
+			WHERE id = ?
+		`);
+		const updatedContact = updatingContact.run(name,surname,email,phone_number,company,id);
+		let locationChecking = db.prepare(`
+			SELECT id FROM Location WHERE country =? AND city = ? 
+		`);
+		let location = locationChecking.get(country,city);
+		if(!location){
+			const result = db.prepare(`INSERT INTO Location (country,city) VALUES (?,?)`).run(country,city);
+			location = {id:result.lastInsertRowid};
+		}
+		const updateContactLocation = db.prepare(`UPDATE Contact SET  location_id = ? WHERE id = ?`).run(location.id,id);
+		updatedContact.changes && updateContactLocation.changes ? res.status(200).send('Location ve Contact başarıyla güncellendi'):res.status(404).send('Contact bulunamadı')
+	}catch(err){
+		console.error('Error',err);
+		res.status(500).send('Güncelleme sırasında hatayla karşılaşıldı.');
+	}
+	
+})
 app.listen(PORT,()=>{
 	console.log('Port dinleniyor...');
 });

@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
+import { useApi } from '../Context/Api';
 import memberImage from '../assets/form-member-image.png';
 const FormElement = () => {
 	useEffect(()=>{
 		fetchCountries();
 	},[]);
+	const {error,loading,fetchDataHandler} = useApi();
 	const fetchCountries = async () =>{
 		try{
 			const response = await fetch('https://countriesnow.space/api/v0.1/countries'); 
@@ -28,11 +30,9 @@ const FormElement = () => {
 		name:'',
 		surname:'',
 		email:'',
-		phoneNumber:'',
-		location:{
-			country:'',
-			city:''
-		},
+		phone_number:'',
+		country:'',
+		city:'',
 		company:'',
 		image:null
 	}
@@ -45,33 +45,49 @@ const FormElement = () => {
 	const handleCountryChange = (e) =>{
 		const country = e.target.value;
 		setSelectedCountry(country);
-		setForm({...form,location:{
-			...form.location,
+		setForm({...form,
 			country:e.target.value
-		}});
+		});
 		fetchCities(country);
 	}
 	const handleCityChange = (e) =>{
 		setSelectedCity(e.target.value);
-		setForm({...form,location:{
-			...form.location,
+		setForm({...form,
 			city:e.target.value
-		}});
+		});
 	}
     const handleChange = (e) => {
 		setForm({...form,[e.target.name]:e.target.value})
 	}
-	const onSubmitForm = () => {
-		console.log(form);
-		setForm(initialForm);
-		setSelectedCountry('default');
-		setSelectedCity('default');
-		setCities([]);
+	const onSubmitForm = async() => {
+		const formData = new FormData();
+		formData.append('name',form.name);
+		formData.append('surname',form.surname);
+		formData.append('email',form.email);
+		formData.append('phone_number',form.phone_number);
+		formData.append('country',form.country);
+		formData.append('city',form.city);
+		formData.append('company',form.company);
+		if(form.image instanceof File)
+			formData.append('image',form.image);
+		try{
+			await fetchDataHandler('/contacts/create','POST',formData);
+			alert("Yeni kişi eklendi");
+			setForm(initialForm);
+			setSelectedCountry('default');
+			setSelectedCity('default');
+			setCities([]);
+		}catch(err){
+			console.error('Formu göndeririken hata oluştu',err);
+		}
+		
 	}
 	const hangleImageChange = (e) =>{
 		const file = e.target.files[0];
 		if(file){
-			setForm({...form,image:URL.createObjectURL(file)})
+			setForm({...form,image:file});
+		}else{
+			setForm({...form,image:memberImage});
 		}
 	}
   return (
@@ -83,7 +99,7 @@ const FormElement = () => {
 			<input placeholder='Name' name='name' value={form.name} onChange={(event) => handleChange(event)} required className='w-full p-1 rounded-md pl-2' />
 			<input placeholder='Surname' name='surname' value={form.surname} onChange={(event) => handleChange(event)} required  className='w-full p-1 rounded-md pl-2'/>
 			<input type='email' name='email' value={form.email} onChange={(event) => handleChange(event)} placeholder='Email' required  className='w-full p-1 rounded-md pl-2'/>
-			<input placeholder='Phone Number' name='phoneNumber' value={form.phoneNumber} onChange={(event) => handleChange(event)} required  className='w-full p-1 rounded-md pl-2'/>
+			<input placeholder='Phone Number' name='phone_number' value={form.phone_number} onChange={(event) => handleChange(event)} required  className='w-full p-1 rounded-md pl-2'/>
 			<div className=" w-full flex items-center justify-between">
 				<select name='country' value={selectedCountry} onChange={(e)=>{handleCountryChange(e)}} className='w-[120px] h-8 rounded-md pl-2 appearance-none pr-[30px] bg-select-arrow bg-no-repeat '>
 					<option value="default">Country</option>

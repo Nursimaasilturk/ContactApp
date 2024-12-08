@@ -18,6 +18,7 @@ function setupDatabase(){
 			phone_number TEXT NOT NULL,
 			company TEXT NULL,
 			location_id INTEGER,
+			image BLOB NULL,
 			FOREIGN KEY (location_id) REFERENCES Location(id)
 			)`).run();
 	}catch(err){
@@ -25,3 +26,4 @@ function setupDatabase(){
 		
 	}
 }
+module.exports = setupDatabase;

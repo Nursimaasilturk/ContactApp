@@ -19,6 +19,7 @@ exports.getAllContact = (req,res) =>{
 exports.createContact = (req,res) =>{
 	try{
 		const {name,surname,email,phone_number,company,country,city} = req.body;
+		const imagePath = req.file ? req.file.path: null;
 		if(!name || !surname || !email || !phone_number || !country)
 			res.status(400).send('Eksik parametreler');
 		const locationChecking = db.prepare(`
@@ -33,9 +34,9 @@ exports.createContact = (req,res) =>{
 			location = {id:result.lastInsertRowid};
 		}
 		const insertContact = db.prepare(`
-			INSERT INTO Contact (name,surname,email,phone_number,company,location_id) VALUES (?,?,?,?,?,?)	
+			INSERT INTO Contact (name,surname,email,phone_number,company,location_id,image) VALUES (?,?,?,?,?,?,?)	
 		`);
-		insertContact.run(name,surname,email,phone_number,company,location.id);
+		insertContact.run(name,surname,email,phone_number,company,location.id,imagePath);
 		res.status(201).send('Kayıt Başarılı');
 	}catch(err){
 		console.error(err);

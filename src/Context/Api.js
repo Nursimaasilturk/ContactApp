@@ -6,8 +6,6 @@ export const ApiProvider = ({ children }) => {
   const [loading,setLoading] = useState(true);
   const [error,setError] = useState(null);
   const fetchDataHandler = async (endpoint,method='GET',body=null)=>{
-    setLoading(true);
-    setError(null);
     const config = {
       method,
       url:endpoint,

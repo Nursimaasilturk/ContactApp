@@ -70,6 +70,7 @@ const FormElement = () => {
 		formData.append('company',form.company);
 		if(form.image instanceof File)
 			formData.append('image',form.image);
+		console.log(formData);
 		try{
 			await fetchDataHandler('/contacts/create','POST',formData);
 			alert("Yeni kişi eklendi");

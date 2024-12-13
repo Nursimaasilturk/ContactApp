@@ -16,10 +16,13 @@ exports.getAllContact = (req,res) =>{
 		res.status(500).send("Veriler alınamadı.");
    }
 } 
-exports.createContact = (req,res) =>{
+exports.createContact = async (req,res) =>{
 	try{
 		const {name,surname,email,phone_number,company,country,city} = req.body;
-		const imagePath = req.file ? req.file.path: null;
+        const { file }  = req;
+	    
+		const imagePath = `/uploads/${file.filename}`;
+		
 		if(!name || !surname || !email || !phone_number || !country)
 			res.status(400).send('Eksik parametreler');
 		const locationChecking = db.prepare(`

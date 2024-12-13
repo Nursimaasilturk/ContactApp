@@ -92,7 +92,7 @@ const FormElement = () => {
 		}
 	}
   return (
-	    <form onSubmit={(e) => {e.preventDefault();onSubmitForm()}} className='flex flex-col justify-start items-center h-full w-[32%] bg-[rgba(255,255,255,0.22)] backdrop-blur-2xl rounded-[20px] overflow-hidden py-5 px-8 gap-5'>
+	    <form  onSubmit={(e) => {e.preventDefault();onSubmitForm()}} className='flex flex-col justify-start items-center h-full w-[32%] bg-[rgba(255,255,255,0.22)] backdrop-blur-2xl rounded-[20px] overflow-hidden py-5 px-8 gap-5'>
 			<div className="relative w-[140px] h-[140px]">
 				<img alt='' src={form.image || memberImage} className='w-full h-full bg-white rounded-full cursor-pointer object-cover'/>
 				<input type='file' accept='image/*' onChange={(e) => hangleImageChange(e)} className='w-full h-full absolute top-0 left-0 w-full h-full opacity-0'/>

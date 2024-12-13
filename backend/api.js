@@ -12,6 +12,7 @@ setupDatabase();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+app.use('/uploads', express.static('uploads'));
 
 app.use('/contacts', contactRoute);
 app.use('/locations',locationRoute);

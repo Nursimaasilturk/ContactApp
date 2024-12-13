@@ -28,7 +28,7 @@ function ContactList() {
 		<div className='w-full h-[89%]  flex flex-col gap-4 overflow-y-scroll scrollbar-hide'>
 			{data.map((contact =>(
 				<div key={contact.id} className="contact-item w-full rounded-[13px] bg-secondary px-4 py-3 flex items-center justify-between">
-					<img src={contact.image} alt="" width={60} height={60} className='rounded-full'/>
+					<img src={`http://localhost:8000${contact.image}`} alt="" width={60} height={60} className='rounded-full'/>
 					<div className="flex flex-col justify-start ml-3 w-4/12">
 						<p className='text-white font-semibold'>{contact.name}</p>
 						<p className='text-white font-semibold'>{contact.surname}</p>

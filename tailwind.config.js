@@ -76,7 +76,6 @@ module.exports = {
           color:'white'
         }
       };
-
       addComponents(sortingBox);
     }),
     require('tailwind-scrollbar-hide'),

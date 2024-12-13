@@ -4,12 +4,15 @@ const multer = require('multer');
 const path = require('path');
 
 const router = express.Router();
+
+const uploadFolder = path.join(__dirname , '../uploads');
 const storage = multer.diskStorage({
 	destination:(req,file,cb)=>{
-		cb(null,'/uploads');
+		cb(null, uploadFolder);
 	},
 	filename:(req,file,cb)=>{
-		cb(null,Date.now() + path.extname(file.originalname));
+		const uniqueName = `${Date.now()} - ${file.originalname}`;
+		cb(null, uniqueName);
 	}
 });
 const upload = multer({storage:storage});

@@ -18,7 +18,7 @@ exports.getAllContact = (req,res) =>{
 } 
 exports.createContact = async (req,res) =>{
 	try{
-		const {name,surname,email,phone_number,company,country,city} = req.body;
+		const {name,surname,email,phone_number,company,country,city,priority} = req.body;
         const { file }  = req;
 	    
 		const imagePath = `/uploads/${file.filename}`;
@@ -37,9 +37,9 @@ exports.createContact = async (req,res) =>{
 			location = {id:result.lastInsertRowid};
 		}
 		const insertContact = db.prepare(`
-			INSERT INTO Contact (name,surname,email,phone_number,company,location_id,image) VALUES (?,?,?,?,?,?,?)	
+			INSERT INTO Contact (name,surname,email,phone_number,company,location_id,priority,image) VALUES (?,?,?,?,?,?,?,?)	
 		`);
-		insertContact.run(name,surname,email,phone_number,company,location.id,imagePath);
+		insertContact.run(name,surname,email,phone_number,company,location.id,priority,imagePath);
 		res.status(201).send('Kayıt Başarılı');
 	}catch(err){
 		console.error(err);
@@ -66,13 +66,13 @@ exports.deleteAllContact = (req,res) =>{
 exports.updateContact = (req,res)=>{
 	try{
 		const {id} = req.params;
-		const {name,surname,email,phone_number,company,country,city} = req.body;
+		const {name,surname,email,phone_number,company,priority,country,city} = req.body;
 		const updatingContact = db.prepare(`
 			UPDATE Contact 
-			SET name = ?, surname = ?, email = ?,phone_number=?, company =?
+			SET name = ?, surname = ?, email = ?,phone_number=?, company =?,priority=?,
 			WHERE id = ?
 		`);
-		const updatedContact = updatingContact.run(name,surname,email,phone_number,company,id);
+		const updatedContact = updatingContact.run(name,surname,email,phone_number,company,priority,id);
 		let locationChecking = db.prepare(`
 			SELECT id FROM Location WHERE country =? AND city = ? 
 		`);

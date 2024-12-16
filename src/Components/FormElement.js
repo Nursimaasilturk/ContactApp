@@ -7,6 +7,23 @@ const FormElement = () => {
 		fetchCountries();
 	},[]);
 	const {error,loading,fetchDataHandler} = useApi();
+	const initialForm = {
+		name:'',
+		surname:'',
+		email:'',
+		phone_number:'',
+		country:'',
+		city:'',
+		priority: 1,
+		company:'',
+		image:null
+	}
+	const [form,setForm]= useState(initialForm);
+	const [countries,setCountries]=useState([]);
+	const [selectedCountry,setSelectedCountry]= useState('default');
+	const [cities,setCities]=useState([]);
+	const [selectedCity,setSelectedCity]=useState('default');
+	const [priority,setPriority] = useState(1);
 	const fetchCountries = async () =>{
 		try{
 			const response = await fetch('https://countriesnow.space/api/v0.1/countries'); 
@@ -26,22 +43,6 @@ const FormElement = () => {
 		  console.error("Error: Cities do not exist!", err);
 		}
 	};
-	const initialForm = {
-		name:'',
-		surname:'',
-		email:'',
-		phone_number:'',
-		country:'',
-		city:'',
-		company:'',
-		image:null
-	}
-	const [form,setForm]= useState(initialForm);
-	const [countries,setCountries]=useState([]);
-	const [selectedCountry,setSelectedCountry]= useState('default');
-	const [cities,setCities]=useState([]);
-	const [selectedCity,setSelectedCity]=useState('default');
-
 	const handleCountryChange = (e) =>{
 		const country = e.target.value;
 		setSelectedCountry(country);
@@ -118,6 +119,10 @@ const FormElement = () => {
 			<input type='text' placeholder='Company' name='company' value={form.company} onChange={(event) => handleChange(event)} className='w-full p-1 rounded-md pl-2'/>
 			<div className=" w-full flex flex-col mb-5">
 				<div className=" w-full flex items-center justify-between px-1">
+				{[1,2,3,4,5].map((priority)=>(
+					<button type='button' key={priority}  className='bg-high w-priority-small h-priority-small rounded-full shadow-high'></button>
+
+				))}
 					<button className='bg-high w-priority-small h-priority-small rounded-full shadow-high'></button>
 					<button className='bg-medium-high w-priority-small h-priority-small rounded-full shadow-medium-high'></button>
 					<button className='bg-medium w-priority-small h-priority-small rounded-full shadow-medium'></button>
